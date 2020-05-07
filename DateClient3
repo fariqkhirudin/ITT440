@@ -1,0 +1,237 @@
+import java.net.*;
+
+
+
+import java.io.*;
+
+
+
+public class DateClient
+
+
+
+{
+
+
+
+public static void main (String args[])
+
+
+
+      {
+
+
+
+               Socket soc;
+
+
+
+DataInputStream dis;
+
+
+
+               String sdate ;
+
+
+
+PrintStreamps;
+
+
+
+try
+
+
+
+ {
+
+
+
+InetAddressia=InetAddress.getLocalHost();
+
+
+
+soc=new Socket(ia,8020);
+
+
+
+dis=new DataInputStream(soc.getInputStream());
+
+
+
+sdate=dis.readLine();
+
+
+
+System.out.println("THE date in the serveris:"+sdate);
+
+
+
+ps=new PrintStream(soc.getOutputStream());
+
+
+
+ps.println(ia);
+
+
+
+                      }
+
+
+
+catch(IOException e)
+
+
+
+                        {
+
+
+
+System.out.println("THE EXCEPTION is :"+e);
+
+
+
+  }
+
+
+
+            }
+
+
+
+}
+
+
+
+DateServer:
+
+
+
+import java.net.*;
+
+
+
+import java.io.*;
+
+
+
+importjava.util.*;
+
+
+
+public class DateServer
+
+
+
+{
+
+
+
+public static void main(String args[])
+
+
+
+      {
+
+
+
+ServerSocketss;
+
+
+
+Socket s;
+
+
+
+PrintStreamps;
+
+
+
+DataInputStream dis;
+
+
+
+String inet;
+
+
+
+try
+
+
+
+              {
+
+
+
+ss=new ServerSocket(8020);
+
+
+
+while(true)
+
+
+
+                  {
+
+
+
+  s=ss.accept();
+
+
+
+ps=new PrintStream(s.getOutputStream());
+
+
+
+     Date d=new Date();
+
+
+
+ps.println(d);
+
+
+
+dis=new DataInputStream(s.getInputStream());
+
+
+
+inet=dis.readLine();
+
+
+
+System.out.println("THE CLIENT SYSTEM ADDRESSIS :"+inet);
+
+
+
+ps.close();
+
+
+
+                  }
+
+
+
+  }
+
+
+
+catch(IOException e)
+
+
+
+                     {
+
+
+
+System.out.println("The exception is :"+e);
+
+
+
+ }
+
+
+
+        }       
+
+
+
+}
